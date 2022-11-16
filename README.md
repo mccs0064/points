@@ -1,46 +1,53 @@
-# Getting Started with Create React App
-
+# Points Tax Report
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Getting started
 
-In the project directory, you can run:
 
-### `npm start`
 
+### Run backend
+go to [https://github.com/Points/interview-test-server](https://github.com/Points/interview-test-server) for instructions on how to bring up the backend. 
+
+The frontend app has a .env file with the local baseUrl for the backend.
+
+### Install dependencies 
+`npm install`
+
+### Run Application
+`npm start` 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
+## Future Improvements/Enhancements
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Code quality
+I would have loved to have spent more time improving the code quality and structure. 
+The components are too large and are not single focused. I would have loved to separate out the components into smaller concise components.  This will improve reusability and allow us to build UI's via composition. 
 
-### `npm run build`
+Using bootstrap as a css framework provides alot of bloat. This was used for speed. But the down side is usually alot of nested divs with odd classnames.  
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Testing could definitely be improved.  I have tested the service level functions of the app to ensure the correct business logic has been developed. But individual components could be tested for how they handle ui interactions. Things such as loading states, error states, and input verification. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### UX 
+Error handling has been accomplished, but it could be refined.  It would be great if a user got a specific effort instead of a standard error message. As well as actually displaying that error state to the user could look nicer. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+One thing I noticed is the api sends the same results given the same inputs. But it is also unreliable as it throws errors intermittently.  One idea I would have loved to explore was to cache the results(local storage) of a successful api request. This way I could look to the cache the next time the user makes a request. Due to the simple nature of the request the responses could be stored in a simple object data structure. Where the key of the object is the year(as a string) and the value is the response from the api. 
 
-### `npm run eject`
+```
+{
+  "2019" : {responseObj},
+  "2020" : {responseObj}
+}
+```
+This approach would allow us to lookup response in O(1).
+Of course the downside to this is that if any information has been updated on the backend our user will not see it if that response has been cached. 
+We could clear the cache at a given interval or on new page load. 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Accessibility. I have not designed or tested for accessibility.  This is something that is required if this was a real app.  I did utilize some semantic html but I am sure there is alot of room for growth here. 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Design
+Overall design is not very good. I used bootstrap for speed and efficiency. 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).

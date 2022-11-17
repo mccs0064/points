@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Loading from '../../components/loading/Loading';
 import TaxSummary from '../../components/taxSummary/TaxSummary';
 import { TaxReport, taxService, TAX_YEARS } from '../../services/taxService/tax.service';
 
@@ -35,6 +36,8 @@ const TaxCalculator: React.FC = () => {
 
   return (
     <>
+      <Loading isOpen={loading} />
+      
       <div className='card mb-3'>
         <div className='card-body'>
           <h1 className='card-title'>Points Tax Calculator</h1>
@@ -86,18 +89,6 @@ const TaxCalculator: React.FC = () => {
           </form>
         </div>
       </div>
-
-
-      {
-        loading &&
-        <div className='text-center'>
-          <div className='spinner-grow text-secondary' role='status'>
-            <span className='visually-hidden'>Loading...</span>
-          </div>
-        </div>
-
-      }
-
 
       {
         taxReport && <TaxSummary {...taxReport} />
